@@ -32,6 +32,15 @@ ol, ul {
   width: 34px;
 }
 
+.square.key {
+  border: 0px solid #999;
+}
+
+.square.square-negritas {
+  background: black;
+  color: white;
+}
+
 .square:focus {
   outline: none;
 }
@@ -47,4 +56,8 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+}
+
+.negritas {
+  font-weight: bold;
 }
