@@ -73,6 +73,17 @@ class Game extends React.Component {
       xIsNext: true,
       isAcendent: true,
     }
+
+    /*
+      * Esta es la pricipal sentaxis  que deberia utilizar, y no la
+      * del tutorial, porque asi evitamos que se cree un nuevo
+      * callback cada vez que se llama a la funcion, y asi no se
+      * reenderiza un componente hijo aque se le esta pasando, de 
+      * manera innecesaria
+      * */
+    this.jumpTo = this.jumpTo.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.order = this.order.bind(this);
   }
 
   handleClick(i) {
@@ -127,7 +138,7 @@ class Game extends React.Component {
 	<li key={ move }>
 	  <button 
 	    className={compare ? 'negritas' : ''} 
-	    onClick={() => this.jumpTo(move)}>
+	    onClick={(e) => this.jumpTo(move, e)}>
 	    { desc }
 	  </button>
 	</li>
@@ -157,14 +168,14 @@ class Game extends React.Component {
         <div className="game-board">
           <Board 
 	    squares={current.squares}
-	    onClick={(i) => this.handleClick(i)}
+	    onClick={(i, e) => this.handleClick(i, e)}
 	    arrayValueClass={xywinner}
 	  />
         </div>
         <div className="game-info">
           <div>{ status }</div>
 	  <button
-	    onClick={() => this.order()}
+	    onClick={this.order}
 	  >
 	    {
 	      this.state.isAcendent ? 'Decendente' : 'Acendente'
